@@ -122,7 +122,7 @@ void sbcEncode(const FunctionCallbackInfo<Value>& args) {
 	if(sbcLen < len) { sbcIn = new uint8_t[len]; sbcOut = new uint8_t[len]; }
 	for(size_t i=0; i<len; i++) sbcIn[i] = arr->Get(ctx,i+ofs).ToLocalChecked()->Uint32Value(ctx).FromJust();
 
-	uint32_t iPos = 0, oPos = 0; ssize_t used, size = 0;
+	uint32_t iPos = 0, oPos = 0; ds_ssize_t used, size = 0;
 	uint32_t f=0; while(iPos < len && (!max || ++f<=max)) {
 		used = sbc_encode(&sbc, sbcIn+iPos, len-iPos, sbcOut+oPos, len-oPos, &size);
 		if(used < 0) { throwEx(iso,cstr("Encode Error: "+to_string(used))); return; }

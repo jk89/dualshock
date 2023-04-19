@@ -34,7 +34,7 @@ extern "C" {
 
 #include <stdint.h>
 #include <sys/types.h>
-typedef int64_t ssize_t;
+typedef int64_t ds_ssize_t;
 
 /* sampling frequency */
 #define SBC_FREQ_16000		0x00
@@ -91,15 +91,15 @@ int sbc_init_a2dp(sbc_t *sbc, unsigned long flags,
 int sbc_reinit_a2dp(sbc_t *sbc, unsigned long flags,
 					const void *conf, size_t conf_len);
 
-ssize_t sbc_parse(sbc_t *sbc, const void *input, size_t input_len);
+ds_ssize_t sbc_parse(sbc_t *sbc, const void *input, size_t input_len);
 
 /* Decodes ONE input block into ONE output block */
-ssize_t sbc_decode(sbc_t *sbc, const void *input, size_t input_len,
+ds_ssize_t sbc_decode(sbc_t *sbc, const void *input, size_t input_len,
 			void *output, size_t output_len, size_t *written);
 
 /* Encodes ONE input block into ONE output block */
-ssize_t sbc_encode(sbc_t *sbc, const void *input, size_t input_len,
-			void *output, size_t output_len, ssize_t *written);
+ds_ssize_t sbc_encode(sbc_t *sbc, const void *input, size_t input_len,
+			void *output, size_t output_len, ds_ssize_t *written);
 
 /* Returns the output block size in bytes */
 size_t sbc_get_frame_length(sbc_t *sbc);
